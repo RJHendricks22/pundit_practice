@@ -31,7 +31,6 @@ after_action :verify_authorized
 
   private
     def secure_params
-      params.require(:user.permit(:role)
+      params.require(:user.permit(:role))
     end
-  end
 end
