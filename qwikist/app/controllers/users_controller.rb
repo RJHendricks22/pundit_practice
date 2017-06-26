@@ -16,16 +16,16 @@ after_action :verify_authorized
     user = User.find(params[:id])
     authorize user
     user.destroy
-    redirect_to users_path, :notice => “User Deleted”
+    redirect_to users_path, :notice => "User Deleted"
   end
 
   def update
     @user = User.find(params[:id])
     authorize @user
     if @user.update_attributes(secure_params)
-      redirect_to users_path, :success => “User updated”
+      redirect_to users_path, :success => "User updated"
     else
-      redirect_to users_path, :alert => ‘Unable to update’
+      redirect_to users_path, :alert => "Unable to update"
     end
   end
 
