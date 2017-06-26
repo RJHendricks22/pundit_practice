@@ -1,1 +1,4 @@
 <h1> Hello </h1>
+<% @user.as_json.each do |key, val| %>
+Attribute: <%= key %> |  value: <%= val %><br>
+<% end %>
