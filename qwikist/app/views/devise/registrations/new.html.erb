@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= f.label :User_Type %><br />
-    <%= f.select :role, [["client", "client"], ["trainer", "trainer"], ["gym", "gym"]], autofocus: true %>
+    <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
   </div>
 <br><br>
   <div class="actions">

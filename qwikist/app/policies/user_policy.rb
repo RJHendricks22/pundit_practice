@@ -8,7 +8,7 @@ class UserPolicy
   end
 
   def index?
-    @current_user.gym?
+    @current_user.gym? || @current_user
   end
 
   def show?
