@@ -23,6 +23,7 @@ after_action :verify_authorized
   def update
     @user = User.find(params[:id])
     authorize @user
+
     if @user.update_attributes(secure_params)
       redirect_to users_path, :success => "User updated"
     else
@@ -32,6 +33,6 @@ after_action :verify_authorized
 
   private
     def secure_params
-      params.require(:user.permit(:role))
+      params.require(:user).permit(:role)
     end
 end
