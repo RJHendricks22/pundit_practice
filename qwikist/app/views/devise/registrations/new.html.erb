@@ -21,6 +21,11 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <div class="field">
+    <%= f.label :User_Type %><br />
+    <%= f.select :role, [["client", "client"], ["trainer", "trainer"], ["gym", "gym"]], autofocus: true %>
+  </div>
+<br><br>
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
