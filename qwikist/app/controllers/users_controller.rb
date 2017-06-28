@@ -4,7 +4,7 @@ before_filter :authenticate_user!
 after_action :verify_authorized
 
   def index
-    @users = User.all
+    @users = User.all.order('id ASC')
     authorize User
   end
 
