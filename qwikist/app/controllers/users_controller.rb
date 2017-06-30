@@ -9,8 +9,19 @@ after_action :verify_authorized
   end
 
   def show
-    @user = User.find(params[:id])
-    authorize @user
+    if User.find_by_id(params[:id])
+      @user = User.find(params[:id])
+      if @user.role == "gym"
+        @info = {"role"=>"gym", "address"=>"the place"}
+      elsif @user.role =="client"
+        @info = {"role"=>@user.role, "address"=>"home"}
+      else
+        @info = {"role"=>@user.role, "address"=>""}
+      end
+    else
+      redirect_to "/", :notice => "User does not exist"
+    end
+    authorize User
   end
   
   def test
