@@ -12,7 +12,23 @@ after_action :verify_authorized
     @user = User.find(params[:id])
     authorize @user
   end
-
+  
+  def test
+    @user = current_user
+    if current_user.role == "admin"
+      @test = "1"
+    elsif current_user.role == "client"
+      @test = "2"
+    elsif current_user.role == "trainer"
+      @test = "3"
+    elsif current_user.role == "gym"
+      @test = "4"
+    else
+      @test = "error"
+    end
+    authorize User
+  end
+  
   def destroy
     user = User.find(params[:id])
     authorize user
