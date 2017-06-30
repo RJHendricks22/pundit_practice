@@ -9,10 +9,37 @@ after_action :verify_authorized
   end
 
   def show
-    @user = User.find(params[:id])
-    authorize @user
+    if User.find_by_id(params[:id])
+      @user = User.find(params[:id])
+      if @user.role == "gym"
+        @info = {"role"=>"gym", "address"=>"the place"}
+      elsif @user.role =="client"
+        @info = {"role"=>@user.role, "address"=>"home"}
+      else
+        @info = {"role"=>@user.role, "address"=>""}
+      end
+    else
+      redirect_to "/", :notice => "User does not exist"
+    end
+    authorize User
   end
-
+  
+  def test
+    @user = current_user
+    if current_user.role == "admin"
+      @test = "1"
+    elsif current_user.role == "client"
+      @test = "2"
+    elsif current_user.role == "trainer"
+      @test = "3"
+    elsif current_user.role == "gym"
+      @test = "4"
+    else
+      @test = "error"
+    end
+    authorize User
+  end
+  
   def destroy
     user = User.find(params[:id])
     authorize user
